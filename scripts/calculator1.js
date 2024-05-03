@@ -16,22 +16,29 @@
 "use strict";
 
 //grab all input from HTML
-const loanAmount = document.getElementById("loanAmount
-
-+-");
+const loanAmount = document.getElementById("loanAmount");
 const interestRate = document.getElementById("interestRate");
 const loanTerm = document.getElementById("loanTerm");
 
 
 //function to calculate the mortgage
-function calculateMortgage();
+function calculateMortgage(){
 //calc
-let loanAmount = parseFloat(document.getElementById("loanAmount").value);
-let interestRate = parseFloat("interestRate".value);
-let loanTerm = parseFloat("loanTerm"value);
-//   var interestRate = Number(document.getElementById('interestRate').value);
-//   var loanTerm = Number(document.getElementById('loanTerm').value);
+const loanAmount = parseFloat(document.getElementById("loanAmount").value);
+const interestRate = parseFloat("interestRate".value);
+const loanTerm = parseFloat("loanTerm".value);
+
+//monthly interest rate
+const monthlyInterestRate = interestRate /100 / 12;
+
+// number of payments
+const numberOfPayments = loanTerm * 12;
+
+//calculate monthly mortgage payment
+const monthlyPayment = loanAmount * monthlyInterestRate * (Math.pow(1 +monthlyInterestRate, numberOfPayments)) / (Math.pow(1 + monthlyInterestRate, numberOfPayments) - 1);
+}
 
 
 
 //trigger the html on button click
+    document.getElementById('result').innerText = "Monthly Payment: $" + monthlyPayment.toFixed(2);
